@@ -134,6 +134,7 @@ namespace WATickets.Controllers
                     Oferta = new EncOferta();
                     Oferta.idCliente = oferta.idCliente;
                     Oferta.idCondPago = oferta.idCondPago;
+                    Oferta.idUsuarioCreador = oferta.idUsuarioCreador;
                     Oferta.Fecha = DateTime.Now;
                     Oferta.Comentarios = oferta.Comentarios;
                     Oferta.Subtotal = oferta.Subtotal;
@@ -199,6 +200,7 @@ namespace WATickets.Controllers
                     db.Entry(Oferta).State = EntityState.Modified;
                     Oferta.idCliente = oferta.idCliente;
                     Oferta.idCondPago = oferta.idCondPago;
+                    Oferta.idUsuarioCreador = oferta.idUsuarioCreador;
                     Oferta.Fecha = DateTime.Now;
                     Oferta.Comentarios = oferta.Comentarios;
                     Oferta.Subtotal = oferta.Subtotal;

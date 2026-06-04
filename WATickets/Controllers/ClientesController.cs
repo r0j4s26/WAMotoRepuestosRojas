@@ -95,7 +95,7 @@ namespace WATickets.Controllers
                 }
                 else
                 {
-                    throw new Exception("Ya existe un proveedor con esta Cédula");
+                    throw new Exception("Ya existe un cliente con esta Cédula");
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.OK);
@@ -167,13 +167,29 @@ namespace WATickets.Controllers
                 Clientes Clientes = db.Clientes.Where(a => a.id == id).FirstOrDefault();
                 if (Clientes != null)
                 {
-                    db.Clientes.Remove(Clientes);
-                    db.SaveChanges();
+                    db.Entry(Clientes).State = EntityState.Modified;
 
+
+                    if (Clientes.Activo)
+                    {
+
+                        Clientes.Activo = false;
+
+                    }
+                    else
+                    {
+
+                        Clientes.Activo = true;
+                    }
+
+
+
+
+                    db.SaveChanges();
                 }
                 else
                 {
-                    throw new Exception("No existe un proveedor con este ID");
+                    throw new Exception("No existe un cliente con este ID");
                 }
 
                 return Request.CreateResponse(System.Net.HttpStatusCode.OK);

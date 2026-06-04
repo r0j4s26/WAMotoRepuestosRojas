@@ -10,6 +10,7 @@ namespace WATickets.Models.Cliente
         public int id { get; set; }
         public int idCliente { get; set; }
         public int idCondPago { get; set; }
+        public int idUsuarioCreador { get; set; }
         public DateTime Fecha { get; set; }
         public string Comentarios { get; set; }
         public decimal Subtotal { get; set; }

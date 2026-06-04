@@ -101,6 +101,7 @@ namespace WATickets.Controllers
                     Producto.PrecioUnitario = productos.PrecioUnitario;
                     Producto.Costo = productos.Costo;
                     Producto.Stock = productos.Stock;
+                    Producto.Activo = true;
                     db.Productos.Add(Producto);
                     db.SaveChanges();
 
@@ -174,9 +175,25 @@ namespace WATickets.Controllers
                 Productos Productos = db.Productos.Where(a => a.id == id).FirstOrDefault();
                 if (Productos != null)
                 {
-                    db.Productos.Remove(Productos);
-                    db.SaveChanges();
+                    db.Entry(Productos).State = EntityState.Modified;
 
+
+                    if (Productos.Activo)
+                    {
+
+                        Productos.Activo = false;
+
+                    }
+                    else
+                    {
+
+                        Productos.Activo = true;
+                    }
+
+
+
+
+                    db.SaveChanges();
                 }
                 else
                 {
